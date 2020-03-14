@@ -1,0 +1,19 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model aspnet2.Models.Material
+
+<h2>Книга № @Model.Id</h2>
+@using (Html.BeginForm("Edit", "Materials", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.Id)
+        <p>
+            @Html.LabelFor(m => m.Title, "Название материала")
+            <br />
+            @Html.EditorFor(m => m.Title)
+        </p>
+        <p><input type="submit" value="Обновить" /></p>
+    </fieldset>
+}

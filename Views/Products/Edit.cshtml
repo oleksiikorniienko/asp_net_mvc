@@ -1,0 +1,27 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model aspnet2.Models.Product
+
+<h2>Книга № @Model.Id</h2>
+@using (Html.BeginForm("Edit", "Products", FormMethod.Post))
+{
+<fieldset>
+    @Html.HiddenFor(m => m.Id)
+    <p>
+        @Html.LabelFor(m => m.Title, "Название")
+        <br />
+        @Html.EditorFor(m => m.Title)
+    </p>
+    <p>
+        @Html.LabelFor(m => m.MaterialId, "Материал")
+        @Html.DropDownListFor(model => model.MaterialId, ViewBag.Materials as SelectList)
+    </p>
+
+    <p><input type="submit" value="Обновить" /></p>
+</fieldset>
+}
+<div>
+    @Html.ActionLink("К списку товаров", "Index")
+</div>

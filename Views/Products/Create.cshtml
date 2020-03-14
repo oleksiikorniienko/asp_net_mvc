@@ -1,0 +1,31 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model aspnet2.Models.Product
+
+<h2>Новый товар</h2>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Товар</legend>
+
+        <p>
+            Название <br />
+            @Html.EditorFor(model => model.Title)
+        </p>
+
+        <p>
+            Материал <br />
+            @Html.DropDownListFor(model => model.MaterialId, ViewBag.Materials as SelectList)
+        </p>
+
+        <p>
+            <input type="submit" value="Добавить товар" />
+        </p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("К списку товаров", "Index")
+</div>
