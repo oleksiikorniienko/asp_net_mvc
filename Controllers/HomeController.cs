@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using aspnet2.Models;
+using aspnet2.Services;
 
 namespace aspnet2.Controllers
 {
@@ -14,18 +15,24 @@ namespace aspnet2.Controllers
 
         public ActionResult Index()
         {
-            var products = db.Products.Include(p => p.Material);
+            var products = db.Products
+                .Where(p => p.InStock > 0)
+                .Include(p => p.Material);
+
             ViewBag.Products = products;
 
-            var userId = Session["UserId"];
-            if (userId != null)
+            var cart = Session["Cart"];
+            var cartJson = "";
+
+            if (cart != null)
             {
-                Console.WriteLine(userId.ToString());
+                cartJson = cart.ToString();
             }
-            else
-            {
-                Console.WriteLine("UserId don`t exist");
-            }
+
+            var cartService = new CartService();
+
+            ViewBag.CartCount = cartService.GetCount(cartJson);
+            ViewBag.CartPrice = cartService.GetPrice(cartJson);
 
             return View();
         }

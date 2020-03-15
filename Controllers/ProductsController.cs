@@ -18,7 +18,7 @@ namespace aspnet2.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-            // where inStock > 0
+
             var products = db.Products.Include(p => p.Material);
 
             return View(products.ToList());

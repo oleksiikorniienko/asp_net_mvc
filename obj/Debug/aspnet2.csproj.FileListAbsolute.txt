@@ -21,3 +21,5 @@
 /Users/administrator/Projects/aspnet2/aspnet2/obj/Debug/aspnet2.csproj.CopyComplete
 /Users/administrator/Projects/aspnet2/aspnet2/obj/Debug/aspnet2.dll
 /Users/administrator/Projects/aspnet2/aspnet2/obj/Debug/aspnet2.pdb
+/Users/administrator/Projects/aspnet2/aspnet2/bin/Newtonsoft.Json.dll
+/Users/administrator/Projects/aspnet2/aspnet2/bin/Newtonsoft.Json.xml
