@@ -14,6 +14,11 @@ namespace aspnet2.Controllers
 
         public ActionResult Index()
         {
+            if(Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            // where inStock > 0
             var products = db.Products.Include(p => p.Material);
 
             return View(products.ToList());
@@ -21,7 +26,12 @@ namespace aspnet2.Controllers
 
         public ActionResult Details(int? id)
         {
-            if(id == null)
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (id == null)
             {
                 return HttpNotFound();
             }
@@ -40,6 +50,11 @@ namespace aspnet2.Controllers
 
         public ActionResult Create()
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             SelectList materials = new SelectList(db.Materials, "Id", "Title");
             ViewBag.Materials = materials;
             return View ();
@@ -48,6 +63,11 @@ namespace aspnet2.Controllers
         [HttpPost]
         public ActionResult Create(Product product)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             try {
                 db.Products.Add(product);
                 db.SaveChanges();
@@ -59,6 +79,11 @@ namespace aspnet2.Controllers
 
         public ActionResult Edit(int? id)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return HttpNotFound();
@@ -78,6 +103,11 @@ namespace aspnet2.Controllers
         [HttpPost]
         public ActionResult Edit(Product product)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             try
             {
                 db.Entry(product).State = EntityState.Modified;
@@ -94,6 +124,11 @@ namespace aspnet2.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             try
             {
                 var product = db.Products.Find(id);

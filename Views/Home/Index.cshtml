@@ -1,1 +1,30 @@
-﻿<h2>Home Page</h2>
+﻿@{
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    <div class="shoping-cart">
+        <p>Count: <span id="products-count">0</span> Price: <span id="products-price">0</span> UAH</p>
+        <button type="button">Make order</button>
+    </div>
+    <hr/>
+    <div id="product-container">
+        @foreach (var p in ViewBag.Products)
+        {
+        <div class="product-item">
+            <p>@p.Title</p>
+            <hr />
+            <p>Product info:</p>
+            <p>- Material: @p.Material.Title</p>
+            <p>- Size W: @p.SizeW sm</p>
+            <p>- Size H: @p.SizeH sm</p>
+            <p>- Price: @p.Price UAH</p>
+            <hr />
+            <input type="hidden" name="id" value="@p.Id" />
+            <input type="hidden" name="price" value="@p.Price" />
+            <input type="number" name="count" max="@p.InStock" value="1" />
+            <button type="button" class="add-to-cart">Add to cart</button>
+        </div>
+        }
+    </div>
+<script src="~/Content/App.js"></script>

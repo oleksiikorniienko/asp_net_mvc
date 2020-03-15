@@ -74,6 +74,8 @@
     <Folder Include="Services\" />
     <Folder Include="Views\Materials\" />
     <Folder Include="Views\Products\" />
+    <Folder Include="Views\Register\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\HomeController.cs" />
@@ -87,6 +89,14 @@
     <Compile Include="Models\Product.cs" />
     <Compile Include="Controllers\MaterialsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserType.cs" />
+    <Compile Include="Models\RegisterView.cs" />
+    <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Services\EncryptDecrypt.cs" />
+    <Compile Include="Controllers\LogoutController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Models\LoginView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
@@ -105,6 +115,11 @@
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Reset.css" />
+    <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Content\App.js" />
   </ItemGroup>
   <ItemGroup>
     <None Include="docker-compose.yml" />

@@ -14,14 +14,23 @@ namespace aspnet2.Controllers
 
         public ActionResult Index()
         {
-            IEnumerable<Material> materials = db.Materials;
-            ViewBag.Materials = materials;
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
-            return View ();
+            IEnumerable<Material> materials = db.Materials;
+
+            return View (materials);
         }
 
         public ActionResult Details(int? id)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return HttpNotFound();
@@ -41,12 +50,22 @@ namespace aspnet2.Controllers
 
         public ActionResult Create()
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View();
         }
 
         [HttpPost]
         public ActionResult Create(Material material)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             try
             {
                 db.Materials.Add(material);
@@ -62,6 +81,11 @@ namespace aspnet2.Controllers
 
         public ActionResult Edit(int? id)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return HttpNotFound();
@@ -80,6 +104,11 @@ namespace aspnet2.Controllers
         [HttpPost]
         public ActionResult Edit(Material material)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             try
             { 
                 db.Entry(material).State = EntityState.Modified;
@@ -94,6 +123,11 @@ namespace aspnet2.Controllers
 
         public ActionResult Delete(int id)
         {
+            if (Convert.ToInt32(Session["UserTypeId"]) != UserType.ADMIN)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             try
             {
                 var material = db.Materials.Find(id);

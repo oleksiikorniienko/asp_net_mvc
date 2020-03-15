@@ -6,5 +6,7 @@ namespace aspnet2.Models
     {
         public DbSet<Material> Materials { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<UserType> UserTypes { get; set; }
     }
 }
